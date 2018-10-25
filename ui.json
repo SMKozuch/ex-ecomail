@@ -10,7 +10,7 @@
       "url": {
         "title": "API url",
         "type": "string",
-        "description": "URL for API calls.",
+        "description": "URL for API calls. Default is https://api2.ecomailapp.cz/",
         "minLength": 0,
         "default": "https://api2.ecomailapp.cz/",
         "propertyOrder": 1
@@ -45,7 +45,7 @@
               "title": "Destination table",
               "default": "",
               "propertyOrder": 2,
-              "description": "Table destination in storage. If left blank, tables will be downloaded to in.c-looker.looker_data_xx, where xx is the ID of look."
+              "description": "Table destination in storage. Default: in.c-ecomail.data_endpoint."
             },
             "incremental" : {
               "type": "boolean",
@@ -56,7 +56,7 @@
               "propertyOrder": 3,
               "default": false,
               "title": "Incremental load",
-              "description": "Marks, whether table should be loaded incrementally into storage."
+              "description": "Incremental load to storage."
             },
             "pk": {
               "type": "string",
