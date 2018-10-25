@@ -155,6 +155,8 @@ def main():
         pk = o['pk']
         incremental = o['incremental']
 
+        pk = [col.strip() for col in primary_key.split(',')]
+
         bool = fullmatch_re(r'^(in|out)\.(c-)\w*\.[\w\-]*', destination)
 
         if bool:
