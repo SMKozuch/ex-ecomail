@@ -16,8 +16,8 @@ import json
 import pandas as pd
 import requests
 import re
-#import logging_gelf.handlers
-#import logging_gelf.formatters
+import logging_gelf.handlers
+import logging_gelf.formatters
 from keboola import docker
 
 
