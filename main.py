@@ -117,6 +117,37 @@ def create_manifest(file_name, destination, primary_key, incremental):
         logging.warn("Could not produce %s output file manifest." % file_name)
         logging.warn(e)
 
+def json_to_csv(data, output_path, inconsistent=True):
+    """
+    Function, that will write json to csv if json is inconsistent
+    """
+
+    if inconsistent:
+        #columns = list(data[next(iter(data))].keys())
+        #clean_data = pd.DataFrame([], columns=columns)
+        """
+        for key in data.keys():
+            row = data[key]
+            logging.info(row)
+            clean_data = pd.concat(
+                pd.DataFrame([data[]])
+            )
+        """
+        
+        clean_data = pd.concat(
+            [pd.DataFrame(dict(
+                zip(data[key].keys(), [[value] for value in data[key].values()])
+            )) for key in data.keys()],
+            ignore_index=True
+        )
+        
+        clean_data.to_csv(output_path, index=False)
+        logging.info("Data was written to csv.")
+        
+    else:
+        logging.info("Writing csv file.")
+        pd.io.json.json_normalize(data).to_csv(output_path, index=False)
+        
 def main():
     for o in objects:
         endpoint = o['endpoint']
@@ -155,7 +186,7 @@ def main():
                 logging.warn(" ".join([msg1, msg2]))
                 pk.remove(key)
 
-        data.to_csv(output_path, index=False)
+        json_to_csv(data, output_path, True)
         create_manifest(file_name, destination, pk, incremental)
 
 if __name__ == '__main__':

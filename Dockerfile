@@ -1,6 +1,6 @@
 FROM quay.io/keboola/docker-custom-python:latest
 
-COPY /data/ /data/
+#COPY /data/ /data/
 
 COPY . /code/
 WORKDIR /data/
